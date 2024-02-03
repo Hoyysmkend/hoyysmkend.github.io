@@ -1,6 +1,6 @@
 ---
-title: Example Category
-description: A description of this category
+title: About
+description: some thing aboout me
 image:
 
 # Badge style

@@ -2,7 +2,7 @@
 baseurl = "https://hoyysmkend.github.io/"
 languageCode = "en-us"
 paginate = 5
-title = "Hoyy's blog"
+title = "dreamreal's blog"
 
 # Theme i18n support
 # Available values: en, fr, id, ja, ko, pt-br, zh-cn, zh-tw, es, de, nl, it, th, el, uk, ar
@@ -13,4 +13,4 @@ defaultContentLanguage = "zh-cn"
 hasCJKLanguage = true
 
 # Change it to your Disqus shortname before using
-disqusShortname = "Hoyy"
+disqusShortname = "Dreamreal"
