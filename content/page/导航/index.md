@@ -1,6 +1,6 @@
 ---
 title: 导航
-工具:
+links:
   - title: transfer.sh
     description: Easy and fast file sharing from the command-line.
     website: https://transfer.sh/
