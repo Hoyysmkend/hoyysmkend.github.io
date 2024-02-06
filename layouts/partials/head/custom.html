@@ -31,6 +31,16 @@
                     button_add.classList.add('dropbtn');
                     newDiv.appendChild(button_add);
 
+                    // 为按钮添加点击事件监听器来切换下拉内容的显示状态
+                    button_add.addEventListener('click', function() {
+                        var dropdownContent = this.nextElementSibling; // 下拉内容紧跟在按钮后面
+                        if (dropdownContent && dropdownContent.style.display === "block") {
+                            dropdownContent.style.display = "none";
+                        } else if(dropdownContent) {
+                            dropdownContent.style.display = "block";
+                        }
+                    });
+
                     // 创建一个新的div存储article
                     var div_store_article = document.createElement('div');
                     div_store_article.classList.add('dropdown-content');
