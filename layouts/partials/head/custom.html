@@ -1,2 +1,53 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7438850435152873"
      crossorigin="anonymous"></script>
+
+<script>
+(function() {
+    document.addEventListener('DOMContentLoaded', (event) => {
+        // to select class article-list--compact
+        parentDiv = document.querySelector('.article-list--compact');
+        articles = document.querySelectorAll('.article-list--compact article');
+
+        // Clear the content of the parent div
+        parentDiv.innerHTML = '';
+
+        articles.forEach(article => {
+            // Create a new div to serve as the clickable element
+            newDiv = document.createElement('div');
+            newDiv.classList.add('linklist');
+
+            // Apply initial styles to the newDiv
+            newDiv.style.minHeight = '50px';
+            newDiv.style.padding = '10px';
+            newDiv.style.border = '1px solid #ccc';
+            newDiv.style.marginBottom = '10px';
+            newDiv.style.cursor = 'pointer';
+
+            // Extract the article's title and use it as the content of newDiv
+            articleTitle = article.querySelector('.article-title').textContent;
+            newDiv.textContent = articleTitle; // Use the title as placeholder content
+
+            // Initially hide the article
+            article.style.display = 'none';
+
+            // Append the hidden article to the newDiv
+            newDiv.appendChild(article);
+
+            // Add a click event listener to the newDiv
+            newDiv.addEventListener('click', function() {
+                // Toggle the display state of the article
+                if (article.style.display === 'none') {
+                    article.style.display = ''; // Show the article
+                } else {
+                    article.style.display = 'none'; // Hide the article
+                    // Optionally reset the newDiv's text to just the title if the article is hidden again
+                    this.textContent = articleTitle; // Comment this out if you want to keep the article within newDiv
+                }
+            });
+
+            // Append the newDiv to the parent div
+            parentDiv.appendChild(newDiv);
+        });
+    });
+})();
+</script>
