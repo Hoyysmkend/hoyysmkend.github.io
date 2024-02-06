@@ -100,19 +100,19 @@ document.querySelector('.linklist .dropbtn').addEventListener('click', function(
 <style>
 /* 按钮和下拉内容的基本样式 */
 .linklist .dropbtn {
-  background-color: #4CAF50;
-  color: white;
-  padding: 8px;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
+  color: black; /* 文字颜色 */
+  padding: 16px 24px; /* 增大填充以使按钮更大，第一个值是垂直填充，第二个值是水平填充 */
+  font-size: 20px; /* 增大字号使文字更显眼 */
+  border: none; /* 无边框 */
+  cursor: pointer; /* 鼠标悬停时显示指针 */
+  text-align: center; /* 确保文字居中 */
+  display: inline-block; /* 使用内联块显示元素，以便能够应用宽度和高度 */
+  width: auto; /* 自动根据内容调整宽度 */
+  min-width: 120px; /* 设置最小宽度确保按钮即使在文本很短时也有较大的显示 */
+  box-sizing: border-box; /* 确保宽度和高度包含了padding和border */
 }
 
 .linklist .dropdown-content {
   display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
 }
 </style>
