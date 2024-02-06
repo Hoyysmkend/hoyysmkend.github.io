@@ -49,3 +49,30 @@
     });
 })();
 </script>
+
+<style>
+/* change style*/
+.linklist {
+    border: none;
+    background-color: white;
+    min-height: 60px;
+    padding: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    position: relative;
+    padding-left: 30px;
+}
+
+.linklist::before {
+    content: '>';
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.linklist.expanded::before {
+    content: 'v';
+}
+</style>
