@@ -1,0 +1,22 @@
+<script>
+document.addEventListener('DOMContentLoaded', (event) => {
+    // to select class article-list--compact
+    const parentDiv = document.querySelector('.article-list--compact');
+    const articles = document.querySelectorAll('.article-list--compact article');
+
+    // clear all element
+    parentDiv.innerHTML = '';
+
+    articles.forEach(article => {
+        // create div
+        const newDiv = document.createElement('div');
+        // add class
+        newDiv.classList.add('linklist');
+        // add to this div
+        newDiv.appendChild(article);
+        // create new div
+        parentDiv.appendChild(newDiv);
+    });
+});
+</script>
+
