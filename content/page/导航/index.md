@@ -2,7 +2,6 @@
 title: 导航
 links:
   - title: 工具
-links:
   - title: 文档
 menu:
     main: 
