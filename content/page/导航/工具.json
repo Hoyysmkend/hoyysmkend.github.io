@@ -1,0 +1,14 @@
+{
+  "sites" : [
+    {
+      "url" : "https://transfer.sh/",
+      "details" : "Easy and fast file sharing from the command-line.",
+      "title" : "transfer"
+    },
+    {
+      "url" : "https://pixeldrain.com",
+      "details" : "Pixeldrain is a free file sharing service, you can upload any file and you will be given a shareable link right away.",
+      "title" : "pixeldrain"
+    },
+  ]
+}
