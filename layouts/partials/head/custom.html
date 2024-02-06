@@ -24,8 +24,18 @@
 
                     // 提取文章的标题并用作newDiv的内容
                     var articleTitle = article.querySelector('.article-title').textContent;
-                    newDiv.textContent = articleTitle; // 使用标题作为占位内容
 
+                    // 添加button
+                    var button_add = document.createElement('button');
+                    button_add.textContent = articleTitle;
+                    button_add.classList.add('dropbtn');
+                    newDiv.appendChild(button_add);
+
+                    // 创建一个新的div存储article
+                    var div_store_article = document.createElement('div');
+                    div_store_article.classList.add('dropdown-content');
+                    div_store_article.setAttribute('style', 'display: none;');
+                    
                     // 构造JSON文件名
                     var jsonFileName = `${encodeURIComponent(articleTitle)}.json`;
 
@@ -39,11 +49,14 @@
                         })
                         .then(jsonData => {
                             // 转换JSON数据为HTML并插入到当前div元素中
-                            newDiv.innerHTML += convertJsonToHtml(jsonData);
+                            div_store_article.innerHTML += convertJsonToHtml(jsonData);
                         })
                         .catch(error => {
                             console.error(`Error loading the JSON file: ${jsonFileName}`, error);
                     });
+
+                    // 将div_store_article附加到newDiv
+                    newDiv.appendChild(div_store_article);
 
                     // 将newDiv附加到父元素
                     parentDiv.appendChild(newDiv);
@@ -63,4 +76,33 @@ function convertJsonToHtml(jsonData) {
     });
     return htmlOutput;
 }
+
+document.querySelector('.linklist .dropbtn').addEventListener('click', function() {
+  var dropdownContent = this.nextElementSibling;
+  if (dropdownContent.style.display === "block") {
+    dropdownContent.style.display = "none";
+  } else {
+    dropdownContent.style.display = "block";
+  }
+});
 </script>
+
+<style>
+/* 按钮和下拉内容的基本样式 */
+.linklist .dropbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 8px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.linklist .dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+</style>
