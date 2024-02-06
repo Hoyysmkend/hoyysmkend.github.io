@@ -27,7 +27,7 @@
                     newDiv.textContent = articleTitle; // 使用标题作为占位内容
 
                     // 构造JSON文件名
-                    var jsonFileName = `${articleTitle}.json`;
+                    var jsonFileName = `${encodeURIComponent(articleTitle)}.json`;
 
                     // 异步加载对应的JSON文件
                     fetch(jsonFileName)
