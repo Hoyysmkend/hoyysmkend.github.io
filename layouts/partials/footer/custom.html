@@ -1,15 +1,15 @@
 <script>
 document.addEventListener('DOMContentLoaded', (event) => {
     // to select class article-list--compact
-    const parentDiv = document.querySelector('.article-list--compact links');
-    const articles = document.querySelectorAll('.article-list--compact links article');
+    parentDiv = document.querySelector('.article-list--compact');
+    articles = document.querySelectorAll('.article-list--compact article');
 
     // clear all element
     parentDiv.innerHTML = '';
 
     articles.forEach(article => {
         // create div
-        const newDiv = document.createElement('div');
+        newDiv = document.createElement('div');
         // add class
         newDiv.classList.add('linklist');
         // add to this div
