@@ -16,6 +16,7 @@
 					// 检查是否有符合条件的元素被添加到DOM中素
 					var parentDiv = document.querySelector('.article-list--compact');
 					if (parentDiv) { // 确保找到了元素
+						console.log('find article-list--compact');
 						var articles = document.querySelectorAll('.article-list--compact article');
 
 						// 清空父元素的内容
@@ -74,15 +75,6 @@
 
 							// 将newDiv附加到父元素
 							parentDiv.appendChild(newDiv);
-						});
-
-						document.querySelector('.linklist .dropbtn').addEventListener('click', function() {
-							var dropdownContent = this.nextElementSibling;
-							if (dropdownContent.style.display === "block") {
-								dropdownContent.style.display = "none";
-							} else {
-								dropdownContent.style.display = "block";
-							}
 						});
 
 						// 断开observer的连接
