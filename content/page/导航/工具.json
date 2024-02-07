@@ -1,14 +1,49 @@
 {
-  "sites" : [
-    {
-      "url" : "https://transfer.sh/",
-      "details" : "Easy and fast file sharing from the command-line.",
-      "title" : "transfer"
-    },
-    {
-      "url" : "https://pixeldrain.com",
-      "details" : "Pixeldrain is a free file sharing service, you can upload any file and you will be given a shareable link right away.",
-      "title" : "pixeldrain"
-    }
-  ]
+    "sites": [
+        {
+            "url": "https://transfer.sh/",
+            "details": "Easy and fast file sharing from the command-line.",
+            "title": "transfer"
+        },
+        {
+            "url": "https://pixeldrain.com",
+            "details": "Pixeldrain is a free file sharing service, you can upload any file and you will be given a shareable link right away.",
+            "title": "pixeldrain"
+        },
+        {
+            "url": "https://codebeautify.org/",
+            "details": "Free Online Tools like Code Beautifiers, Code Formatters, Editors, Viewers, Minifier, Validators, Converters for Developers: XML, JSON, CSS, JavaScript, Java, C#, MXML, SQL, CSV, Excel",
+            "title": "code beautify"
+        },
+        {
+            "url": "https://jsoncrack.com/editor",
+            "details": "JSON Crack Editor is a tool for visualizing into graphs, analyzing, editing, formatting, querying, transforming and validating JSON, CSV, YAML, XML, and more.",
+            "title": "JSON Crack"
+        },
+        {
+            "url": "https://excalidraw.com/",
+            "details": "Hand-drawn look & feel \u2022 Collaborative \u2022 Secure",
+            "title": "Excalidraw"
+        },
+        {
+            "url": "https://smms.app/",
+            "details": "Simple Free Image Hosting",
+            "title": "Image Upload - SM.MS"
+        },
+        {
+            "url": "https://riverside.fm/transcription",
+            "details": "Accurate AI Transcriptions in Minutes",
+            "title": "Riverside"
+        },
+        {
+            "url": "https://www.edaplayground.com/",
+            "details": "Edit code - EDA Playground a website to use FPGA online",
+            "title": "EDA Playground"
+        },
+        {
+            "url": "https://godbolt.org/",
+            "details": "Compiler Explorer is an interactive online compiler which shows the assembly output of compiled C++, Rust, Go (and many more) code.",
+            "title": "Compiler Explorer"
+        }
+    ]
 }
