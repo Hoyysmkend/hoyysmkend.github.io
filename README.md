@@ -4,6 +4,7 @@
 我给这个工程加入了一个`content/page/导航`目录，而我写了一个效果，就是让链接可以像列表一样展开，这个效果只会作用在这个页面。
 相关js脚本保存在`layouts/partials/head/custom.html`里。
 只需要修改`index.md`中的title和对应的json文件，就可以增减相关的网站。
+因此我制作了一个python脚本，专门来修改这个json文件。
 
 <img align="right" width="150" alt="logo" src="https://user-images.githubusercontent.com/5889006/190859553-5b229b4f-c476-4cbd-928f-890f5265ca4c.png">
 
