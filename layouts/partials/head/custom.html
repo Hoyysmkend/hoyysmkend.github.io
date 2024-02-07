@@ -7,97 +7,171 @@
 	if (window.location.pathname === '/%E5%AF%BC%E8%88%AA/') {
 		console.log('这段代码只在“导航”页面执行');
 
-		(function waitForBody() {
-			if (document.body) { // body存在，可以设置MutationObserver
-				console.log('body存在');
+		// 检查.article-list--compact元素是否已存在
+		var articleList_detect = document.querySelector('.article-list--compact');
+		if (articleList_detect) {
+			// 如果.article-list--compact已存在，则执行相关逻辑
+			console.log('.article-list--compact已经存在');
 
-				// 创建一个MutationObserver实例来监听DOM变化
-				var observer_links = new MutationObserver((mutations, obs) => {
+			// 这里可以添加处理现有.article-list--compact的代码
+			// 选中class为article-list--compact的元素
+			var parentDiv = document.querySelector('.article-list--compact');
+			if (parentDiv) { // 确保找到了元素
+				var articles = document.querySelectorAll('.article-list--compact article');
 
-					(function waitForarticlelist() {
-						// 检查是否有符合条件的元素被添加到DOM中素
-						var parentDiv = document.querySelector('.article-list--compact');
-						if (parentDiv) { // 确保找到了元素
-							console.log('find article-list--compact');
-							var articles = document.querySelectorAll('.article-list--compact article');
+				// 清空父元素的内容
+				parentDiv.innerHTML = '';
 
-							// 清空父元素的内容
-							parentDiv.innerHTML = '';
+				articles.forEach(function(article) {
+					// 创建一个新的div作为可点击的元素
+					var newDiv = document.createElement('div');
+					newDiv.classList.add('linklist');
 
-							articles.forEach(function(article) {
-								// 创建一个新的div作为可点击的元素
-								var newDiv = document.createElement('div');
-								newDiv.classList.add('linklist');
+					// 提取文章的标题并用作newDiv的内容
+					var articleTitle = article.querySelector('.article-title').textContent;
 
-								// 提取文章的标题并用作newDiv的内容
-								var articleTitle = article.querySelector('.article-title').textContent;
+					// 添加button
+					var button_add = document.createElement('button');
+					button_add.textContent = articleTitle;
+					button_add.classList.add('dropbtn');
+					newDiv.appendChild(button_add);
 
-								// 添加button
-								var button_add = document.createElement('button');
-								button_add.textContent = articleTitle;
-								button_add.classList.add('dropbtn');
-								newDiv.appendChild(button_add);
+					// 为按钮添加点击事件监听器来切换下拉内容的显示状态
+					button_add.addEventListener('click', function() {
+						var dropdownContent = this.nextElementSibling; // 下拉内容紧跟在按钮后面
+						if (dropdownContent && dropdownContent.style.display === "block") {
+							dropdownContent.style.display = "none";
+						} else if (dropdownContent) {
+							dropdownContent.style.display = "block";
+						}
+					});
 
-								// 为按钮添加点击事件监听器来切换下拉内容的显示状态
-								button_add.addEventListener('click', function() {
-									var dropdownContent = this.nextElementSibling; // 下拉内容紧跟在按钮后面
-									if (dropdownContent && dropdownContent.style.display === "block") {
-										dropdownContent.style.display = "none";
-									} else if (dropdownContent) {
-										dropdownContent.style.display = "block";
-									}
-								});
+					// 创建一个新的div存储article
+					var div_store_article = document.createElement('div');
+					div_store_article.classList.add('dropdown-content');
+					div_store_article.setAttribute('style', 'display: none;');
 
-								// 创建一个新的div存储article
-								var div_store_article = document.createElement('div');
-								div_store_article.classList.add('dropdown-content');
-								div_store_article.setAttribute('style', 'display: none;');
+					// 构造JSON文件名
+					var jsonFileName = `${encodeURIComponent(articleTitle)}.json`;
 
-								// 构造JSON文件名
-								var jsonFileName = `${encodeURIComponent(articleTitle)}.json`;
+					// 异步加载对应的JSON文件
+					fetch(jsonFileName)
+						.then(response => {
+							if (!response.ok) {
+								throw new Error(`Network response was not ok for ${jsonFileName}`);
+							}
+							return response.json();
+						})
+						.then(jsonData => {
+							// 转换JSON数据为HTML并插入到当前div元素中
+							div_store_article.innerHTML += convertJsonToHtml(jsonData);
+						})
+						.catch(error => {
+							console.error(`Error loading the JSON file: ${jsonFileName}`, error);
+						});
 
-								// 异步加载对应的JSON文件
-								fetch(jsonFileName)
-									.then(response => {
-										if (!response.ok) {
-											throw new Error(`Network response was not ok for ${jsonFileName}`);
+					// 将div_store_article附加到newDiv
+					newDiv.appendChild(div_store_article);
+
+					// 将newDiv附加到父元素
+					parentDiv.appendChild(newDiv);
+				});
+			}
+
+		} else {
+			// 如果.article-list--compact不存在，设置MutationObserver
+			(function waitForBody() {
+				if (document.body) { // body存在，可以设置MutationObserver
+					console.log('body存在');
+
+					// 创建一个MutationObserver实例来监听DOM变化
+					var observer_links = new MutationObserver((mutations, obs) => {
+
+						(function waitForarticlelist() {
+							// 检查是否有符合条件的元素被添加到DOM中素
+							var parentDiv = document.querySelector('.article-list--compact');
+							if (parentDiv) { // 确保找到了元素
+								console.log('find article-list--compact');
+								var articles = document.querySelectorAll('.article-list--compact article');
+
+								// 清空父元素的内容
+								parentDiv.innerHTML = '';
+
+								articles.forEach(function(article) {
+									// 创建一个新的div作为可点击的元素
+									var newDiv = document.createElement('div');
+									newDiv.classList.add('linklist');
+
+									// 提取文章的标题并用作newDiv的内容
+									var articleTitle = article.querySelector('.article-title').textContent;
+
+									// 添加button
+									var button_add = document.createElement('button');
+									button_add.textContent = articleTitle;
+									button_add.classList.add('dropbtn');
+									newDiv.appendChild(button_add);
+
+									// 为按钮添加点击事件监听器来切换下拉内容的显示状态
+									button_add.addEventListener('click', function() {
+										var dropdownContent = this.nextElementSibling; // 下拉内容紧跟在按钮后面
+										if (dropdownContent && dropdownContent.style.display === "block") {
+											dropdownContent.style.display = "none";
+										} else if (dropdownContent) {
+											dropdownContent.style.display = "block";
 										}
-										return response.json();
-									})
-									.then(jsonData => {
-										// 转换JSON数据为HTML并插入到当前div元素中
-										div_store_article.innerHTML += convertJsonToHtml(jsonData);
-									})
-									.catch(error => {
-										console.error(`Error loading the JSON file: ${jsonFileName}`, error);
 									});
 
-								// 将div_store_article附加到newDiv
-								newDiv.appendChild(div_store_article);
+									// 创建一个新的div存储article
+									var div_store_article = document.createElement('div');
+									div_store_article.classList.add('dropdown-content');
+									div_store_article.setAttribute('style', 'display: none;');
 
-								// 将newDiv附加到父元素
-								parentDiv.appendChild(newDiv);
-							});
+									// 构造JSON文件名
+									var jsonFileName = `${encodeURIComponent(articleTitle)}.json`;
 
-							// 断开observer的连接
-							obs.disconnect();
-						} else {
-							// articlelist不存在，稍后再次检查
-							setTimeout(waitForarticlelist, 30); // 30毫秒后再次检查
-						}
-					})();
-				});
+									// 异步加载对应的JSON文件
+									fetch(jsonFileName)
+										.then(response => {
+											if (!response.ok) {
+												throw new Error(`Network response was not ok for ${jsonFileName}`);
+											}
+											return response.json();
+										})
+										.then(jsonData => {
+											// 转换JSON数据为HTML并插入到当前div元素中
+											div_store_article.innerHTML += convertJsonToHtml(jsonData);
+										})
+										.catch(error => {
+											console.error(`Error loading the JSON file: ${jsonFileName}`, error);
+										});
 
-				// 配置observer：子树和子节点的变化
-				observer_links.observe(document.body, {
-					childList: true, // 观察目标子节点的变化，是否有添加或者删除
-					subtree: true // 观察后代节点
-				});
-			} else {
-				// body不存在，稍后再次检查
-				setTimeout(waitForBody, 30); // 30毫秒后再次检查
-			}
-		})();
+									// 将div_store_article附加到newDiv
+									newDiv.appendChild(div_store_article);
+
+									// 将newDiv附加到父元素
+									parentDiv.appendChild(newDiv);
+								});
+
+								// 断开observer的连接
+								obs.disconnect();
+							} else {
+								// articlelist不存在，稍后再次检查
+								setTimeout(waitForarticlelist, 30); // 30毫秒后再次检查
+							}
+						})();
+					});
+
+					// 配置observer：子树和子节点的变化
+					observer_links.observe(document.body, {
+						childList: true, // 观察目标子节点的变化，是否有添加或者删除
+						subtree: true // 观察后代节点
+					});
+				} else {
+					// body不存在，稍后再次检查
+					setTimeout(waitForBody, 30); // 30毫秒后再次检查
+				}
+			})();
+		}
 	}
 
 })();
