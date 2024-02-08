@@ -22,136 +22,17 @@
 					// 选中class为article-list--compact的元素
 					var parentDiv = document.querySelector('.article-list--compact');
 					if (parentDiv) { // 确保找到了元素
-						var articles = document.querySelectorAll('.article-list--compact article');
-
-						// 清空父元素的内容
-						parentDiv.innerHTML = '';
-
-						articles.forEach(function(article) {
-							// 创建一个新的div作为可点击的元素
-							var newDiv = document.createElement('div');
-							newDiv.classList.add('linklist');
-
-							// 提取文章的标题并用作newDiv的内容
-							var articleTitle = article.querySelector('.article-title').textContent;
-
-							// 添加button
-							var button_add = document.createElement('button');
-							button_add.textContent = articleTitle;
-							button_add.classList.add('dropbtn');
-							newDiv.appendChild(button_add);
-
-							// 为按钮添加点击事件监听器来切换下拉内容的显示状态
-							button_add.addEventListener('click', function() {
-								var dropdownContent = this.nextElementSibling; // 下拉内容紧跟在按钮后面
-								if (dropdownContent && dropdownContent.style.display === "block") {
-									dropdownContent.style.display = "none";
-								} else if (dropdownContent) {
-									dropdownContent.style.display = "block";
-								}
-							});
-
-							// 创建一个新的div存储article
-							var div_store_article = document.createElement('div');
-							div_store_article.classList.add('dropdown-content');
-							div_store_article.setAttribute('style', 'display: none;');
-
-							// 构造JSON文件名
-							var jsonFileName = `${encodeURIComponent(articleTitle)}.json`;
-
-							// 异步加载对应的JSON文件
-							fetch(jsonFileName)
-								.then(response => {
-									if (!response.ok) {
-										throw new Error(`Network response was not ok for ${jsonFileName}`);
-									}
-									return response.json();
-								})
-								.then(jsonData => {
-									// 转换JSON数据为HTML并插入到当前div元素中
-									div_store_article.innerHTML += convertJsonToHtml(jsonData);
-								})
-								.catch(error => {
-									console.error(`Error loading the JSON file: ${jsonFileName}`, error);
-								});
-
-							// 将div_store_article附加到newDiv
-							newDiv.appendChild(div_store_article);
-
-							// 将newDiv附加到父元素
-							parentDiv.appendChild(newDiv);
-						});
+						convertArticle(parentDiv); // 转换所有匹配的article
 					}
 
 				} else {
-
 					// 创建一个MutationObserver实例来监听DOM变化
 					var observer_links = new MutationObserver((mutations, obs) => {
-
 						(function waitForarticlelist() {
 							// 检查是否有符合条件的元素被添加到DOM中素
 							var parentDiv = document.querySelector('.article-list--compact');
 							if (parentDiv) { // 确保找到了元素
-								console.log('find article-list--compact');
-								var articles = document.querySelectorAll('.article-list--compact article');
-
-								// 清空父元素的内容
-								parentDiv.innerHTML = '';
-
-								articles.forEach(function(article) {
-									// 创建一个新的div作为可点击的元素
-									var newDiv = document.createElement('div');
-									newDiv.classList.add('linklist');
-
-									// 提取文章的标题并用作newDiv的内容
-									var articleTitle = article.querySelector('.article-title').textContent;
-
-									// 添加button
-									var button_add = document.createElement('button');
-									button_add.textContent = articleTitle;
-									button_add.classList.add('dropbtn');
-									newDiv.appendChild(button_add);
-
-									// 为按钮添加点击事件监听器来切换下拉内容的显示状态
-									button_add.addEventListener('click', function() {
-										var dropdownContent = this.nextElementSibling; // 下拉内容紧跟在按钮后面
-										if (dropdownContent && dropdownContent.style.display === "block") {
-											dropdownContent.style.display = "none";
-										} else if (dropdownContent) {
-											dropdownContent.style.display = "block";
-										}
-									});
-
-									// 创建一个新的div存储article
-									var div_store_article = document.createElement('div');
-									div_store_article.classList.add('dropdown-content');
-									div_store_article.setAttribute('style', 'display: none;');
-
-									// 构造JSON文件名
-									var jsonFileName = `${encodeURIComponent(articleTitle)}.json`;
-
-									// 异步加载对应的JSON文件
-									fetch(jsonFileName)
-										.then(response => {
-											if (!response.ok) {
-												throw new Error(`Network response was not ok for ${jsonFileName}`);
-											}
-											return response.json();
-										})
-										.then(jsonData => {
-											// 转换JSON数据为HTML并插入到当前div元素中
-											div_store_article.innerHTML += convertJsonToHtml(jsonData);
-										})
-										.catch(error => {
-											console.error(`Error loading the JSON file: ${jsonFileName}`, error);
-										});
-
-									// 将div_store_article附加到newDiv
-									newDiv.appendChild(div_store_article);
-
-									// 将newDiv附加到父元素
-									parentDiv.appendChild(newDiv);
-								});
+								convertArticle(parentDiv); // 转换所有匹配的article
 
 								// 断开observer的连接
 								obs.disconnect();
@@ -172,22 +53,84 @@
 				// body不存在，稍后再次检查
 				setTimeout(waitForBody, 30); // 30毫秒后再次检查
 			}
-
 		})();
-
 	}
-
 })();
 
-// 转换函数
+// article转换为按钮列表
+function convertArticle(parentDiv) {
+	// 找到所有符合的article
+	var articles = document.querySelectorAll('.article-list--compact article');
+
+	// 清空父元素的内容
+	parentDiv.innerHTML = '';
+
+	// 转换article
+	articles.forEach(function(article) {
+		// 创建一个新的div作为可点击的元素
+		var newDiv = document.createElement('div');
+		newDiv.classList.add('linklist');
+
+		// 提取文章的标题并用作newDiv的内容
+		var articleTitle = article.querySelector('.article-title').textContent;
+
+		// 添加button
+		var button_add = document.createElement('button');
+		button_add.textContent = articleTitle;
+		button_add.classList.add('dropbtn');
+		newDiv.appendChild(button_add);
+
+		// 为按钮添加点击事件监听器来切换下拉内容的显示状态
+		button_add.addEventListener('click', function() {
+			var dropdownContent = this.nextElementSibling; // 下拉内容紧跟在按钮后面
+			if (dropdownContent && dropdownContent.style.display === "block") {
+				dropdownContent.style.display = "none";
+			} else if (dropdownContent) {
+				dropdownContent.style.display = "block";
+			}
+		});
+
+		// 创建一个新的div存储article
+		var div_store_article = document.createElement('div');
+		div_store_article.classList.add('dropdown-content');
+		div_store_article.setAttribute('style', 'display: none;');
+
+		// 构造JSON文件名
+		var jsonFileName = `${encodeURIComponent(articleTitle)}.json`;
+
+		// 异步加载对应的JSON文件
+		fetch(jsonFileName)
+			.then(response => {
+				if (!response.ok) {
+					throw new Error(`Network response was not ok for ${jsonFileName}`);
+				}
+				return response.json();
+			})
+			.then(jsonData => {
+				// 转换JSON数据为HTML并插入到当前div元素中
+				div_store_article.innerHTML += convertJsonToHtml(jsonData);
+			})
+			.catch(error => {
+				console.error(`Error loading the JSON file: ${jsonFileName}`, error);
+			});
+
+		// 将div_store_article附加到newDiv
+		newDiv.appendChild(div_store_article);
+
+		// 将newDiv附加到父元素
+		parentDiv.appendChild(newDiv);
+	});
+}
+
+// json转换函数
 function convertJsonToHtml(jsonData) {
-    let htmlOutput = '';
-    jsonData.sites.forEach(site => {
-        if (site.url && site.details && site.title) {
-            htmlOutput += `<article><a href="${site.url}" target="_blank" rel="noopener"><div class="article-details"><h2 class="article-title">${site.title}</h2><footer class="article-time">${site.details}</footer></div></a></article>`;
-        }
-    });
-    return htmlOutput;
+	let htmlOutput = '';
+	jsonData.sites.forEach(site => {
+		if (site.url && site.details && site.title) {
+			htmlOutput += `<article><a href="${site.url}" target="_blank" rel="noopener"><div class="article-details"><h2 class="article-title">${site.title}</h2><footer class="article-time">${site.details}</footer></div></a></article>`;
+		}
+	});
+	return htmlOutput;
 }
 </script>
 
