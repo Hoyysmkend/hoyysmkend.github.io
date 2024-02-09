@@ -1,8 +1,9 @@
 import tkinter as tk
-from tkinter import filedialog, messagebox, scrolledtext
+from tkinter import filedialog, messagebox, scrolledtext, ttk
 import json
 
 current_data = {}  # To keep track of the currently loaded data
+current_key = ""  # Track the selected key
 
 def load_json(path):
     try:
@@ -20,13 +21,14 @@ def save_json(path, data):
     except Exception as e:
         messagebox.showerror("Error", f"Failed to save JSON file: {e}")
 
-def display_json(data):
+def display_json(data, key):
     text_area.delete(1.0, tk.END)  # Clear existing content
-    for site in data['sites']:
-        text_area.insert(tk.END, f"Title: {site['title']}\nURL: {site['url']}\nDetails: {site['details']}\n\n")
+    if key in data:
+        for site in data[key]:
+            text_area.insert(tk.END, f"Title: {site['title']}\nURL: {site['url']}\nDetails: {site['details']}\n\n")
 
 def add_entry():
-    if not (entry_url.get() and entry_details.get() and entry_title.get()):  # Ensure all fields are filled
+    if not (entry_url.get() and entry_details.get() and entry_title.get() and current_key):  # Ensure all fields are filled
         messagebox.showwarning("Warning", "Please fill all fields before adding an entry.")
         return  # Skip adding the entry if any field is empty
     
@@ -35,19 +37,21 @@ def add_entry():
         "details": entry_details.get(),
         "title": entry_title.get()
     }
-    current_data["sites"].append(new_site)
-    display_json(current_data)
-    save_json(entry_path.get(), current_data)
-    entry_url.delete(0, tk.END)
-    entry_details.delete(0, tk.END)
-    entry_title.delete(0, tk.END)
+    if current_key in current_data:
+        current_data[current_key].append(new_site)
+        display_json(current_data, current_key)
+        save_json(entry_path.get(), current_data)
+        entry_url.delete(0, tk.END)
+        entry_details.delete(0, tk.END)
+        entry_title.delete(0, tk.END)
 
 def remove_entry():
-    title_to_remove = entry_title.get()
-    current_data["sites"] = [site for site in current_data["sites"] if site["title"] != title_to_remove]
-    display_json(current_data)
-    save_json(entry_path.get(), current_data)
-    entry_title.delete(0, tk.END)
+    if current_key:
+        title_to_remove = entry_title.get()
+        current_data[current_key] = [site for site in current_data[current_key] if site["title"] != title_to_remove]
+        display_json(current_data, current_key)
+        save_json(entry_path.get(), current_data)
+        entry_title.delete(0, tk.END)
 
 def browse_file():
     filename = filedialog.askopenfilename(filetypes=(("JSON files", "*.json"), ("All files", "*.*")))
@@ -56,18 +60,36 @@ def browse_file():
         entry_path.insert(0, filename)
         global current_data
         current_data = load_json(filename)
-        if current_data:
-            display_json(current_data)
+        update_key_options()
+
+def update_key_options():
+    key_combo['values'] = list(current_data.keys()) if current_data else []
+    key_combo.current(0)  # Set the first item as the current item
+    on_key_selection_changed()
+
+def on_key_selection_changed(event=None):
+    global current_key
+    current_key = key_combo.get()
+    if current_data:
+        display_json(current_data, current_key)
 
 root = tk.Tk()
 root.title("JSON File Viewer and Editor")
 
-tk.Label(root, text="File Path:").pack()
-entry_path = tk.Entry(root, width=50)
-entry_path.pack()
+frame = tk.Frame(root)
+frame.pack(fill=tk.X)
 
-browse_button = tk.Button(root, text="Browse", command=browse_file)
-browse_button.pack()
+tk.Label(frame, text="File Path:").pack(side=tk.LEFT)
+entry_path = tk.Entry(frame, width=50)
+entry_path.pack(side=tk.LEFT)
+
+browse_button = tk.Button(frame, text="Browse", command=browse_file)
+browse_button.pack(side=tk.LEFT)
+
+tk.Label(root, text="Key:").pack()
+key_combo = ttk.Combobox(root, width=47, postcommand=update_key_options)
+key_combo.pack()
+key_combo.bind('<<ComboboxSelected>>', on_key_selection_changed)
 
 tk.Label(root, text="URL:").pack()
 entry_url = tk.Entry(root, width=50)
