@@ -180,20 +180,60 @@ function convertJsonToHtml(jsonData) {
 </script>
 
 <style>
-/* 按钮和下拉内容的基本样式 */
-.linklist .dropbtn {
-  color: black; /* 文字颜色 */
-  padding: 16px 24px; /* 增大填充以使按钮更大，第一个值是垂直填充，第二个值是水平填充 */
-  font-size: 20px; /* 增大字号使文字更显眼 */
-  border: none; /* 无边框 */
-  cursor: pointer; /* 鼠标悬停时显示指针 */
-  text-align: center; /* 确保文字居中 */
-  display: inline-block; /* 使用内联块显示元素，以便能够应用宽度和高度 */
-  width: auto; /* 自动根据内容调整宽度 */
-  min-width: 120px; /* 设置最小宽度确保按钮即使在文本很短时也有较大的显示 */
-  box-sizing: border-box; /* 确保宽度和高度包含了padding和border */
-  border-top: 1px solid black; /* 为顶部添加1px实线边界 */
-  border-bottom: 1px solid black; /* 为底部添加1px实线边界 */
+/* Style the link list for a more modern appearance */
+.linklist {
+  margin-bottom: 10px; /* Add space between each linklist */
+  background-color: #fff; /* White background for contrast */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  border-radius: 4px; /* Rounded corners */
 }
 
+/* Style the dropbtn for a more engaging appearance */
+.linklist .dropbtn {
+  color: #333; /* Darker text for better readability */
+  padding: 16px 24px; /* Comfortable padding */
+  font-size: 16px; /* Standard font size */
+  background-color: #f9f9f9; /* Slightly off-white, for depth */
+  width: 100%; /* Full width */
+  text-align: left; /* Align text to the left */
+  border: none; /* No border */
+  cursor: pointer; /* Pointer cursor on hover */
+  outline: none; /* Remove outline on focus */
+  transition: background-color 0.3s; /* Smooth background transition */
+}
+
+/* Hover and focus styles for the dropbtn */
+.linklist .dropbtn:hover, .linklist .dropbtn:focus {
+  background-color: #eaeaea; /* Light grey background on hover/focus */
+}
+
+/* The container for the dropdown content, hidden by default */
+.dropdown-content {
+  display: none;
+  padding: 15px; /* Padding for content */
+  border-top: 1px solid #ddd; /* Separator from button */
+}
+
+/* Style for the article list within the dropdown */
+.sites-list article {
+  border-bottom: 1px solid #eee; /* Separator between articles */
+  padding: 10px 0; /* Padding for each article */
+}
+
+/* Style for article details */
+.article-details {
+  padding: 0 24px; /* Padding around text */
+}
+
+/* Style for the article title */
+.article-title {
+  color: #333; /* Darker color for the title */
+  font-size: 18px; /* Slightly larger font for titles */
+}
+
+/* Style for the article footer */
+.article-time {
+  color: #666; /* Lighter text for less emphasis */
+  font-size: 14px; /* Smaller font size for footer */
+}
 </style>
