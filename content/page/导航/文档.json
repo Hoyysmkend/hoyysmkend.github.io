@@ -1,16 +1,16 @@
-{
-    "Private Tracker相关": [
-        {
-            "url": "https://wiki.ukenn.top/",
-            "details": "用于汇总网络上有关Private Tracker相关的实用教程.",
-            "title": "Private Tracker Wiki"
-        }
-    ],
-    "Computer Science相关": [
-        {
-            "url": "https://csdiy.wiki",
-            "details": "这是一本计算机的自学指南.",
-            "title": "CS自学指南"
-        }
-    ]
+{ 
+	"Private Tracker相关": [ 
+		{ 
+			"url": "https://wiki.ukenn.top/", 
+			"details": "用于汇总网络上有关Private Tracker相关的实用教程.", 
+			"title": "Private Tracker Wiki" 
+		} 
+	], 
+	"Computer Science相关": [ 
+		{ 
+			"url": "https://csdiy.wiki", 
+			"details": "这是一本计算机的自学指南.", 
+			"title": "CS自学指南" 
+		} 
+	] 
 }
