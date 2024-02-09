@@ -15,3 +15,18 @@ url = "https://github.com/Hoyysmkend"
 [social.params]
 icon = "brand-github"
 
+[[social]]
+identifier = "email"
+name = "email"
+url = "dream_way_out@protonmail.com"
+
+[social.params]
+icon = "envelop-at"
+
+[[social]]
+identifier = "rss"
+name = "rss"
+url = "https://dreamreal.me/index.xml"
+
+[social.params]
+icon = "rss"

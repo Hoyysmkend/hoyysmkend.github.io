@@ -6,7 +6,7 @@ favicon = "/favicon.png"
 
 [footer]
 since = 2023
-customText = "Copyright © 2024 dreamreal's blog"
+customText = "Copyright © 2024 dreamreal's blog，If there are any infringement areas, please contact dream_way_out@protonmail.com"
 
 [dateFormat]
 published = "Jan 02, 2006"

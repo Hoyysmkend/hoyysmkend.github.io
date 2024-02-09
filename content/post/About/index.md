@@ -10,5 +10,3 @@ weight: 1       # You can add weight to some posts to override the default sorti
 ---
 
 **Welcome to my blog.**
-
-If there are any infringement areas, please contact my email: <dream_way_out@protonmail.com>.
