@@ -108,7 +108,7 @@ function convertArticle(parentDiv) {
 			})
 			.then(jsonData => {
 				// 转换JSON数据为HTML并插入到当前div元素中
-				div_store_article.innerHTML += convertJsonToHtml(jsonData);
+				div_store_article.appendChild(convertJsonToHtml(jsonData));
 			})
 			.catch(error => {
 				console.error(`Error loading the JSON file: ${jsonFileName}`, error);
