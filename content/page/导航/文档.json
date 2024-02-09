@@ -1,10 +1,12 @@
 {
-    "sites": [
+    "Private Tracker相关": [
         {
             "url": "https://wiki.ukenn.top/",
             "details": "\u7528\u4e8e\u6c47\u603b\u7f51\u7edc\u4e0a\u6709\u5173Private Tracker\u76f8\u5173\u7684\u5b9e\u7528\u6559\u7a0b.",
             "title": "Private Tracker Wiki"
-        },
+        }
+    ],
+	"Computer Science相关": [
         {
             "url": "https://csdiy.wiki",
             "details": "\u8fd9\u662f\u4e00\u672c\u8ba1\u7b97\u673a\u7684\u81ea\u5b66\u6307\u5357.",

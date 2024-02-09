@@ -1,5 +1,5 @@
 {
-    "sites": [
+    "文件在线传输": [
         {
             "url": "https://transfer.sh/",
             "details": "Easy and fast file sharing from the command-line.",
@@ -9,7 +9,9 @@
             "url": "https://pixeldrain.com",
             "details": "Pixeldrain is a free file sharing service, you can upload any file and you will be given a shareable link right away.",
             "title": "pixeldrain"
-        },
+        }
+    ],
+	"在线美化代码": [
         {
             "url": "https://codebeautify.org/",
             "details": "Free Online Tools like Code Beautifiers, Code Formatters, Editors, Viewers, Minifier, Validators, Converters for Developers: XML, JSON, CSS, JavaScript, Java, C#, MXML, SQL, CSV, Excel",
@@ -19,22 +21,30 @@
             "url": "https://jsoncrack.com/editor",
             "details": "JSON Crack Editor is a tool for visualizing into graphs, analyzing, editing, formatting, querying, transforming and validating JSON, CSV, YAML, XML, and more.",
             "title": "JSON Crack"
-        },
+        }
+    ],
+	"在线画图": [
         {
             "url": "https://excalidraw.com/",
-            "details": "Hand-drawn look & feel \u2022 Collaborative \u2022 Secure",
+            "details": "Hand-drawn look & feel • Collaborative • Secure",
             "title": "Excalidraw"
-        },
+        }
+    ],
+	"图床": [
         {
             "url": "https://smms.app/",
             "details": "Simple Free Image Hosting",
             "title": "Image Upload - SM.MS"
-        },
+        }
+    ],
+	"AI工具": [
         {
             "url": "https://riverside.fm/transcription",
-            "details": "Accurate AI Transcriptions in Minutes",
+            "details": "Accurate AI Transcriptions in Minutes（语言转文本）",
             "title": "Riverside"
-        },
+        }
+    ],
+	"ic工具": [
         {
             "url": "https://www.edaplayground.com/",
             "details": "Edit code - EDA Playground a website to use FPGA online",

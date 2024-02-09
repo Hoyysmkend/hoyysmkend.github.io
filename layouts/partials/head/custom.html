@@ -124,11 +124,56 @@ function convertArticle(parentDiv) {
 
 // json转换函数
 function convertJsonToHtml(jsonData) {
-	let htmlOutput = '';
-	jsonData.sites.forEach(site => {
-		if (site.url && site.details && site.title) {
-			htmlOutput += `<article><a href="${site.url}" target="_blank" rel="noopener"><div class="article-details"><h2 class="article-title">${site.title}</h2><footer class="article-time">${site.details}</footer></div></a></article>`;
-		}
+	var htmlOutput = document.createElement('div');
+	htmlOutput.classList.add('addlinks_all');
+
+	// 清除既有内容
+	htmlOutput.innerHTML = '';
+
+	Object.keys(jsonData).forEach(key => {
+		var containerElement = document.createElement('div');
+		containerElement.classList.add('addlinks');
+
+		// 清除既有内容
+		containerElement.innerHTML = '';
+
+		// 创建一个按钮用于展示分类
+		var categoryButton = document.createElement('button');
+		categoryButton.textContent = `${key}`;
+		categoryButton.classList.add('addlinks-btn');
+
+		// 创建一个div用于存放这个分类的网站列表，初始时隐藏
+		var sitesListDiv = document.createElement('div');
+		sitesListDiv.style.display = 'none';
+		sitesListDiv.classList.add('sites-list');
+
+		// 填充这个分类的网站列表
+		jsonData[key].forEach(site => {
+			if (site.url && site.details && site.title) {
+				// 创建一个新的article元素用于显示站点信息
+				var siteArticle = document.createElement('article');
+				siteArticle.innerHTML = `<a href="${site.url}" target="_blank" rel="noopener"><div class="article-details"><h2 class="article-title">${site.title}</h2><footer class="article-time">${site.details}</footer></div></a>`;
+				// 将siteArticle添加到sitesListDiv中
+				sitesListDiv.appendChild(siteArticle);
+			}
+		});
+
+		// 为按钮添加点击事件监听器来切换下拉内容的显示状态
+		categoryButton.addEventListener('click', function() {
+			var dropdownContent = this.nextElementSibling; // 下拉内容紧跟在按钮后面
+			if (dropdownContent && dropdownContent.style.display === "block") {
+				dropdownContent.style.display = "none";
+			} else if (dropdownContent) {
+				dropdownContent.style.display = "block";
+			}
+		});
+
+		// 将按钮和网站列表添加到容器中
+		containerElement.appendChild(categoryButton);
+		containerElement.appendChild(sitesListDiv);
+
+		// 添加到output
+		htmlOutput.appendChild(containerElement);
 	});
 	return htmlOutput;
 }
