@@ -27,6 +27,68 @@ def display_json(data, key):
         for site in data[key]:
             text_area.insert(tk.END, f"Title: {site['title']}\nURL: {site['url']}\nDetails: {site['details']}\n\n")
 
+def rename_key():
+    old_key = key_combo.get()
+    new_key = entry_rename_key.get()
+
+    if not new_key:
+        messagebox.showwarning("Warning", "New key name cannot be empty.")
+        return
+
+    if new_key in current_data:
+        messagebox.showwarning("Warning", "This key name already exists.")
+        return
+
+    if old_key:
+        current_data[new_key] = current_data.pop(old_key)
+        update_key_options()
+        key_combo.set(new_key)
+        messagebox.showinfo("Success", f"Key '{old_key}' has been renamed to '{new_key}'")
+        entry_rename_key.delete(0, tk.END)
+
+def add_key():
+    new_key = entry_new_key.get()
+    if new_key and new_key not in current_data:
+        current_data[new_key] = []
+        update_key_options()
+        messagebox.showinfo("Success", f"Key '{new_key}' added successfully!")
+        entry_new_key.delete(0, tk.END)
+    else:
+        messagebox.showwarning("Warning", "Key already exists or is empty!")
+
+def remove_key():
+    key_to_remove = key_combo.get()
+    if key_to_remove and key_to_remove in current_data:
+        del current_data[key_to_remove]
+        update_key_options()
+        messagebox.showinfo("Success", f"Key '{key_to_remove}' removed successfully!")
+
+def move_key_up():
+    key = key_combo.get()
+    keys = list(current_data.keys())
+    index = keys.index(key)
+    if index > 0:
+        keys[index], keys[index - 1] = keys[index - 1], keys[index]
+        update_current_data_order(keys)
+        update_key_options()
+        key_combo.set(key)  # Keep the same key selected
+        save_json(entry_path.get(), current_data)  # Save changes to the file
+
+def move_key_down():
+    key = key_combo.get()
+    keys = list(current_data.keys())
+    index = keys.index(key)
+    if index < len(keys) - 1:
+        keys[index], keys[index + 1] = keys[index + 1], keys[index]
+        update_current_data_order(keys)
+        update_key_options()
+        key_combo.set(key)  # Keep the same key selected
+        save_json(entry_path.get(), current_data)  # Save changes to the file
+
+def update_current_data_order(new_order):
+    global current_data
+    current_data = {key: current_data[key] for key in new_order if key in current_data}
+
 def add_entry():
     if not (entry_url.get() and entry_details.get() and entry_title.get() and current_key):  # Ensure all fields are filled
         messagebox.showwarning("Warning", "Please fill all fields before adding an entry.")
@@ -90,6 +152,32 @@ tk.Label(root, text="Key:").pack()
 key_combo = ttk.Combobox(root, width=47, postcommand=update_key_options)
 key_combo.pack()
 key_combo.bind('<<ComboboxSelected>>', on_key_selection_changed)
+
+# For renaming a key
+tk.Label(root, text="New Key Name:").pack()
+entry_rename_key = tk.Entry(root, width=50)
+entry_rename_key.pack()
+
+rename_key_button = tk.Button(root, text="Rename Key", command=rename_key)
+rename_key_button.pack()
+
+move_up_button = tk.Button(root, text="Move Key Up", command=move_key_up)
+move_up_button.pack()
+
+move_down_button = tk.Button(root, text="Move Key Down", command=move_key_down)
+move_down_button.pack()
+
+# For adding a new key
+tk.Label(root, text="New Key:").pack()
+entry_new_key = tk.Entry(root, width=50)
+entry_new_key.pack()
+
+add_key_button = tk.Button(root, text="Add Key", command=add_key)
+add_key_button.pack()
+
+# For removing a selected key
+remove_key_button = tk.Button(root, text="Remove Selected Key", command=remove_key)
+remove_key_button.pack()
 
 tk.Label(root, text="URL:").pack()
 entry_url = tk.Entry(root, width=50)

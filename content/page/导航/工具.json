@@ -1,5 +1,24 @@
 {
-    "文件在线传输": [
+    "AI\u5de5\u5177": [
+        {
+            "url": "https://riverside.fm/transcription",
+            "details": "Accurate AI Transcriptions in Minutes\uff08\u8bed\u8a00\u8f6c\u6587\u672c\uff09",
+            "title": "Riverside"
+        }
+    ],
+    "ic\u5de5\u5177": [
+        {
+            "url": "https://www.edaplayground.com/",
+            "details": "Edit code - EDA Playground a website to use FPGA online",
+            "title": "EDA Playground"
+        },
+        {
+            "url": "https://godbolt.org/",
+            "details": "Compiler Explorer is an interactive online compiler which shows the assembly output of compiled C++, Rust, Go (and many more) code.",
+            "title": "Compiler Explorer"
+        }
+    ],
+    "\u6587\u4ef6\u5728\u7ebf\u4f20\u8f93": [
         {
             "url": "https://transfer.sh/",
             "details": "Easy and fast file sharing from the command-line.",
@@ -11,7 +30,19 @@
             "title": "pixeldrain"
         }
     ],
-	"在线美化代码": [
+    "\u4ee3\u7801\u6258\u7ba1\u7f51\u7ad9": [
+        {
+            "url": "https://sourcehut.org/",
+            "details": "This suite of open source tools is the software development platform you've been waiting for. ",
+            "title": "sourcehut hub"
+        },
+        {
+            "url": "https://pastebin.com/",
+            "details": "Pastebin.com is the number one paste tool since 2002. Pastebin is a website where you can store text online for a set period of time.",
+            "title": "Pastebin.com"
+        }
+    ],
+    "\u5728\u7ebf\u4ee3\u7801\u7f8e\u5316": [
         {
             "url": "https://codebeautify.org/",
             "details": "Free Online Tools like Code Beautifiers, Code Formatters, Editors, Viewers, Minifier, Validators, Converters for Developers: XML, JSON, CSS, JavaScript, Java, C#, MXML, SQL, CSV, Excel",
@@ -23,37 +54,18 @@
             "title": "JSON Crack"
         }
     ],
-	"在线画图": [
+    "\u5728\u7ebf\u753b\u56fe": [
         {
             "url": "https://excalidraw.com/",
-            "details": "Hand-drawn look & feel • Collaborative • Secure",
+            "details": "Hand-drawn look & feel \u2022 Collaborative \u2022 Secure",
             "title": "Excalidraw"
         }
     ],
-	"图床": [
+    "\u56fe\u5e8a": [
         {
             "url": "https://smms.app/",
             "details": "Simple Free Image Hosting",
             "title": "Image Upload - SM.MS"
-        }
-    ],
-	"AI工具": [
-        {
-            "url": "https://riverside.fm/transcription",
-            "details": "Accurate AI Transcriptions in Minutes（语言转文本）",
-            "title": "Riverside"
-        }
-    ],
-	"ic工具": [
-        {
-            "url": "https://www.edaplayground.com/",
-            "details": "Edit code - EDA Playground a website to use FPGA online",
-            "title": "EDA Playground"
-        },
-        {
-            "url": "https://godbolt.org/",
-            "details": "Compiler Explorer is an interactive online compiler which shows the assembly output of compiled C++, Rust, Go (and many more) code.",
-            "title": "Compiler Explorer"
         }
     ]
 }
