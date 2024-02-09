@@ -18,7 +18,7 @@ icon = "brand-github"
 [[social]]
 identifier = "email"
 name = "email"
-url = "dream_way_out@protonmail.com"
+url = "mailto:dream_way_out@protonmail.com"
 
 [social.params]
 icon = "envelope-at"
