@@ -21,7 +21,7 @@ name = "email"
 url = "dream_way_out@protonmail.com"
 
 [social.params]
-icon = "envelop-at"
+icon = "envelope-at"
 
 [[social]]
 identifier = "rss"
