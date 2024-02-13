@@ -1,16 +1,28 @@
-{ 
-	"Private Tracker相关": [ 
-		{ 
-			"url": "https://wiki.ukenn.top/", 
-			"details": "用于汇总网络上有关Private Tracker相关的实用教程.", 
-			"title": "Private Tracker Wiki" 
-		} 
-	], 
-	"Computer Science相关": [ 
-		{ 
-			"url": "https://csdiy.wiki", 
-			"details": "这是一本计算机的自学指南.", 
-			"title": "CS自学指南" 
-		} 
-	] 
+{
+    "Private Tracker\u76f8\u5173": [
+        {
+            "url": "https://wiki.ukenn.top/",
+            "details": "\u7528\u4e8e\u6c47\u603b\u7f51\u7edc\u4e0a\u6709\u5173Private Tracker\u76f8\u5173\u7684\u5b9e\u7528\u6559\u7a0b.",
+            "title": "Private Tracker Wiki"
+        }
+    ],
+    "Computer Science\u76f8\u5173": [
+        {
+            "url": "https://csdiy.wiki",
+            "details": "\u8fd9\u662f\u4e00\u672c\u8ba1\u7b97\u673a\u7684\u81ea\u5b66\u6307\u5357.",
+            "title": "CS\u81ea\u5b66\u6307\u5357"
+        }
+    ],
+    "Cmake": [
+        {
+            "url": "https://modern-cmake-cn.github.io/Modern-CMake-zh_CN/",
+            "details": "\u5982\u679c\u4f60\u60f3\u8981\u5b66\u597d CMake \uff0c\u90a3\u4f60\u5e94\u8be5\u4f1a\u4ece\u8fd9\u672c\u4e66\u4e2d\u53d7\u76ca\uff01",
+            "title": "Modern CMake \u7b80\u4f53\u4e2d\u6587\u7248"
+        },
+        {
+            "url": "https://hsf-training.github.io/hsf-training-cmake-webpage/index.html",
+            "details": "The aim of this tutorial is to cover the basics of using CMake. This tutorial is based on the online book Modern CMake, with a focus on CMake 3.15+.",
+            "title": "HSF CMake tutorial"
+        }
+    ]
 }
