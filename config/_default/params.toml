@@ -79,7 +79,7 @@ enabled = true
 provider = "disqus"
 
 [comments.disqusjs]
-shortname = ""
+shortname = "dream_real"
 apiUrl = ""
 apiKey = ""
 admin = ""

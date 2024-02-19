@@ -24,5 +24,12 @@
             "details": "The aim of this tutorial is to cover the basics of using CMake. This tutorial is based on the online book Modern CMake, with a focus on CMake 3.15+.",
             "title": "HSF CMake tutorial"
         }
+    ],
+    "TensorFlow 2\u76f8\u5173": [
+        {
+            "url": "https://tf.wiki/",
+            "details": "A Concise Handbook of TensorFlow 2",
+            "title": "\u7b80\u5355\u7c97\u66b4 TensorFlow 2"
+        }
     ]
 }
