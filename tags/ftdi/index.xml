@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>FTDI on dreamreal's blog</title><link>https://hoyysmkend.github.io/tags/ftdi/</link><description>Recent content in FTDI on dreamreal's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 22 May 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://hoyysmkend.github.io/tags/ftdi/index.xml" rel="self" type="application/rss+xml"/><item><title>FTDI教程</title><link>https://hoyysmkend.github.io/p/ftdi/</link><pubDate>Wed, 22 May 2024 00:00:00 +0000</pubDate><guid>https://hoyysmkend.github.io/p/ftdi/</guid><description>&lt;h2 id="1介绍">1、介绍：
+&lt;/h2>&lt;h3 id="简介">①简介：
+&lt;/h3>&lt;ul>
+&lt;li>
+&lt;p>&lt;strong>文档及文件：&lt;/strong>&lt;/p>
+&lt;p>&lt;a class="link" href="FTDI%E4%BD%BF%E7%94%A8%20d378ad473a654a188cf2505665ffe716/AN_220_FTDI_Drivers_Installation_Guide_for_Linux.pdf" >AN_220_FTDI_Drivers_Installation_Guide_for_Linux.pdf&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="FTDI%E4%BD%BF%E7%94%A8%20d378ad473a654a188cf2505665ffe716/AN_124_User_Guide_For_FT_PROG.pdf" >AN_124_User_Guide_For_FT_PROG.pdf&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="FTDI%E4%BD%BF%E7%94%A8%20d378ad473a654a188cf2505665ffe716/DS_FT2232C.pdf" >DS_FT2232C.pdf&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="FTDI%E4%BD%BF%E7%94%A8%20d378ad473a654a188cf2505665ffe716/libftd2xx-x86_64-1.4.27.tgz" >libftd2xx-x86_64-1.4.27.tgz&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="FTDI%E4%BD%BF%E7%94%A8%20d378ad473a654a188cf2505665ffe716/FT_Prog_v3.12.49.662-Installer.zip" >FT_Prog_v3.12.49.662-Installer.zip&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="FTDI%E4%BD%BF%E7%94%A8%20d378ad473a654a188cf2505665ffe716/FT2232HL_Board_sch_V3.6.pdf" >FT2232HL Board sch V3.6.pdf&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>官网：&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>&lt;a class="link" href="https://ftdichip.cn/index.html" target="_blank" rel="noopener"
+>&lt;strong>https://ftdichip.cn/index.html&lt;/strong>&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://ftdichip.com/" target="_blank" rel="noopener"
+>&lt;strong>https://ftdichip.com/&lt;/strong>&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="安装">②安装：
+&lt;/h3>&lt;blockquote>
+&lt;p>用&lt;code>journalctl -xb&lt;/code>和&lt;code>dmesg&lt;/code>查看日志&lt;/p>
+&lt;/blockquote>
+&lt;ul>
+&lt;li>&lt;strong>（1）接入usb，打开终端，输入&lt;code>dmesg | grep FTDI&lt;/code>：&lt;/strong>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;strong>这个是FT2232H，有俩路：&lt;/strong>&lt;/p>
+&lt;p>&lt;img src="https://hoyysmkend.github.io/FTDI%E4%BD%BF%E7%94%A8%20d378ad473a654a188cf2505665ffe716/Untitled.png"
+loading="lazy"
+alt="Untitled"
+>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>&lt;code>lsusb&lt;/code>：&lt;/strong>&lt;/p>
+&lt;p>&lt;img src="https://hoyysmkend.github.io/FTDI%E4%BD%BF%E7%94%A8%20d378ad473a654a188cf2505665ffe716/Untitled%201.png"
+loading="lazy"
+alt="Untitled"
+>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>&lt;code>ATTRS{idVendor}==&amp;quot;0403&amp;quot;, ATTRS{idProduct}==&amp;quot;6010”&lt;/code>&lt;/strong>&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>（2）安装minicom测试：&lt;/strong>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;strong>由于原厂是两个VCM串口，所以可以先进行测试一下；&lt;/strong>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>&lt;code>sudo apt install minicom&lt;/code>&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>按键&lt;code>CTRL + A&lt;/code>，再按键&lt;code>Z&lt;/code>：进入帮助界面&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>按键&lt;code>O&lt;/code>：进入配置minicom&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="https://hoyysmkend.github.io/FTDI%E4%BD%BF%E7%94%A8%20d378ad473a654a188cf2505665ffe716/Untitled%202.png"
+loading="lazy"
+alt="Untitled"
+>&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>保存：&lt;/strong>
+&lt;ul>
+&lt;li>&lt;strong>可以保存为默认设置：选择“&lt;code>Save setup as dfl&lt;/code>”&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>连接BDBUS1（RXD）和BDBUS0（TXD），对应ttyUSB1：&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;strong>输入&lt;code>sudo minicom -D /dev/ttyUSB1&lt;/code>：&lt;/strong>&lt;/p>
+&lt;p>&lt;img src="https://hoyysmkend.github.io/FTDI%E4%BD%BF%E7%94%A8%20d378ad473a654a188cf2505665ffe716/Untitled%203.png"
+loading="lazy"
+alt="Untitled"
+>&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>有回路显示（在minicom界面打字就可以看到接收到的数据）；&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>（3）安装驱动：&lt;/strong>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;strong>卸载VCM（这个是没有关系的，我们插上usb后它会重新安装，顺便卸载）&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>&lt;code>sudo rmmod ftdi_sio&lt;/code>&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>&lt;code>sudo rmmod usbserial&lt;/code>&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>安装库：&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>&lt;code>sudo apt-get -y install libftdi-dev&lt;/code>&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>&lt;code>sudo apt-get install libftdi1-dev&lt;/code>&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> libftd2xx-x86_64-1.4.24
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cp release/build/libftd2xx.* /usr/local/lib
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">chmod &lt;span class="m">0755&lt;/span> /usr/local/lib/libftd2xx.so.1.4.27
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ln -s /usr/local/lib/libftd2xx.so.1.4.27 /usr/local/lib/libftd2xx.so
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cp ftd2xx.h /usr/local/include
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cp WinTypes.h /usr/local/include
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>&lt;strong>&lt;code>ldconfig -v&lt;/code>可以看动态链接库加上&lt;code>grep ftd&lt;/code>就行，记得&lt;code>sudo reboot&lt;/code>；&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="烧录eeprom">③烧录eeprom：
+&lt;/h3>&lt;ul>
+&lt;li>
+&lt;p>&lt;strong>（1）vivado官方配置：&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;strong>相关资料：&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>&lt;a class="link" href="https://docs.xilinx.com/r/en-US/ug908-vivado-programming-debugging/Programming-FTDI-Devices-for-Vivado-Hardware-Manager-Support" target="_blank" rel="noopener"
+>&lt;strong>https://docs.xilinx.com/r/en-US/ug908-vivado-programming-debugging/Programming-FTDI-Devices-for-Vivado-Hardware-Manager-Support&lt;/strong>&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://docs.amd.com/r/zh-CN/ug908-vivado-programming-debugging/%E7%94%A8%E4%BA%8E-Vivado-%E7%A1%AC%E4%BB%B6%E7%AE%A1%E7%90%86%E5%99%A8%E6%94%AF%E6%8C%81%E7%9A%84-FTDI-%E5%99%A8%E4%BB%B6%E7%BC%96%E7%A8%8B" target="_blank" rel="noopener"
+>&lt;strong>https://docs.amd.com/r/zh-CN/ug908-vivado-programming-debugging/用于-Vivado-硬件管理器支持的-FTDI-器件编程&lt;/strong>&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>在TCL控制台输入“&lt;code>program_ftdi&lt;/code>”即可查看到帮助信息：&lt;/strong>&lt;/p>
+&lt;p>&lt;img src="https://hoyysmkend.github.io/FTDI%E4%BD%BF%E7%94%A8%20d378ad473a654a188cf2505665ffe716/Untitled%204.png"
+loading="lazy"
+alt="Untitled"
+>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>&lt;code>program_ftdi -write -ftdi FT2232H -serial 666666 -vendor &amp;quot;FTDI&amp;quot; -board &amp;quot;FT2232HL&amp;quot; -desc &amp;quot;jtag for xillin”&lt;/code>&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;strong>看起来它会自动检测：&lt;/strong>&lt;/p>
+&lt;p>&lt;img src="https://hoyysmkend.github.io/FTDI%E4%BD%BF%E7%94%A8%20d378ad473a654a188cf2505665ffe716/Untitled%205.png"
+loading="lazy"
+alt="Untitled"
+>&lt;/p>
+&lt;p>&lt;img src="https://hoyysmkend.github.io/FTDI%E4%BD%BF%E7%94%A8%20d378ad473a654a188cf2505665ffe716/Untitled%206.png"
+loading="lazy"
+alt="Untitled"
+>&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>（2）民间配置：&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>&lt;a class="link" href="https://github.com/hero/ft2232hl-jtag" target="_blank" rel="noopener"
+>https://github.com/hero/ft2232hl-jtag&lt;/a>&lt;/strong>
+&lt;ul>
+&lt;li>&lt;a class="link" href="https://launchpad.net/ubuntu/xenial/&amp;#43;package/ftdi-eeprom" target="_blank" rel="noopener"
+>&lt;strong>https://launchpad.net/ubuntu/xenial/+package/ftdi-eeprom&lt;/strong>&lt;/a>&lt;/li>
+&lt;li>&lt;code>sudo apt-get install software-properties-common&lt;/code>&lt;/li>
+&lt;li>&lt;a class="link" href="https://blog.csdn.net/zgp210317/article/details/120586189" target="_blank" rel="noopener"
+>&lt;strong>https://blog.csdn.net/zgp210317/article/details/120586189&lt;/strong>&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://blog.csdn.net/perfect886/article/details/120798989" target="_blank" rel="noopener"
+>&lt;strong>https://blog.csdn.net/perfect886/article/details/120798989&lt;/strong>&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;a class="link" href="https://gitee.com/zooxyz123/xilinx_jtag_ft2232_ft4232" target="_blank" rel="noopener"
+>&lt;strong>https://gitee.com/zooxyz123/xilinx_jtag_ft2232_ft4232&lt;/strong>&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://github.com/dragonlock2/ftdi_dumps/tree/main" target="_blank" rel="noopener"
+>&lt;strong>https://github.com/dragonlock2/ftdi_dumps/tree/main&lt;/strong>&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://github.com/TerayTech/TT_Digilent_JTAG_HS2/tree/master" target="_blank" rel="noopener"
+>&lt;strong>https://github.com/TerayTech/TT_Digilent_JTAG_HS2/tree/master&lt;/strong>&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>（3）自己配置：&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>配置port B：&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="https://hoyysmkend.github.io/FTDI%E4%BD%BF%E7%94%A8%20d378ad473a654a188cf2505665ffe716/Untitled%207.png"
+loading="lazy"
+alt="Untitled"
+>&lt;/p>
+&lt;p>&lt;img src="https://hoyysmkend.github.io/FTDI%E4%BD%BF%E7%94%A8%20d378ad473a654a188cf2505665ffe716/Untitled%208.png"
+loading="lazy"
+alt="Untitled"
+>&lt;/p>
+&lt;p>&lt;img src="https://hoyysmkend.github.io/FTDI%E4%BD%BF%E7%94%A8%20d378ad473a654a188cf2505665ffe716/Untitled%209.png"
+loading="lazy"
+alt="Untitled"
+>&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="2使用">2、使用：
+&lt;/h2>&lt;h3 id="连接">①连接：
+&lt;/h3>&lt;ul>
+&lt;li>
+&lt;p>&lt;strong>上面由于设置的是port A，所以我们要使用对应的口（ADBUS）：&lt;/strong>&lt;/p>
+&lt;p>&lt;img src="https://hoyysmkend.github.io/FTDI%E4%BD%BF%E7%94%A8%20d378ad473a654a188cf2505665ffe716/Untitled%2010.png"
+loading="lazy"
+alt="Untitled"
+>&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;strong>AD与BD相同：&lt;/strong>&lt;/p>
+&lt;p>&lt;img src="https://hoyysmkend.github.io/FTDI%E4%BD%BF%E7%94%A8%20d378ad473a654a188cf2505665ffe716/Untitled%2011.png"
+loading="lazy"
+alt="Untitled"
+>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>它应该是有一个连接的，虽然原理图是BD，实际上AD也可以用，直接用它的jtag口就可以了：&lt;/strong>&lt;/p>
+&lt;p>&lt;img src="https://hoyysmkend.github.io/FTDI%E4%BD%BF%E7%94%A8%20d378ad473a654a188cf2505665ffe716/Untitled%2012.png"
+loading="lazy"
+alt="Untitled"
+>&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>注意共地；&lt;/strong>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>连接linux，对应ttyUSB1（BDUSB）（我们发现是有的）：&lt;/strong>&lt;/p>
+&lt;p>&lt;img src="https://hoyysmkend.github.io/FTDI%E4%BD%BF%E7%94%A8%20d378ad473a654a188cf2505665ffe716/Untitled%2013.png"
+loading="lazy"
+alt="Untitled"
+>&lt;/p>
+&lt;p>&lt;img src="https://hoyysmkend.github.io/FTDI%E4%BD%BF%E7%94%A8%20d378ad473a654a188cf2505665ffe716/Untitled%2014.png"
+loading="lazy"
+alt="Untitled"
+>&lt;/p>
+&lt;/li>
+&lt;/ul></description></item></channel></rss>
